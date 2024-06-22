@@ -1,71 +1,83 @@
 import {Dimensions, Platform, StatusBar} from 'react-native'
+import {isTablet} from 'react-native-device-info'
 
-const {height: W_HEIGHT, width: W_WIDTH} = Dimensions.get('window')
+const {width: WINDOW_WIDTH, height: WINDOW_HEIGHT} = Dimensions.get('window')
+const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('screen')
 
 let isIPhoneX = false
 
 if (Platform.OS === 'ios' && !Platform.isPad) {
   isIPhoneX =
-    W_HEIGHT === 780 ||
-    W_WIDTH === 780 ||
-    W_HEIGHT === 812 ||
-    W_WIDTH === 812 ||
-    W_HEIGHT === 844 ||
-    W_WIDTH === 844 ||
-    W_HEIGHT === 896 ||
-    W_WIDTH === 896 ||
-    W_HEIGHT === 926 ||
-    W_WIDTH === 926
+    WINDOW_HEIGHT === 780 ||
+    WINDOW_WIDTH === 780 ||
+    WINDOW_HEIGHT === 812 ||
+    WINDOW_WIDTH === 812 ||
+    WINDOW_HEIGHT === 844 ||
+    WINDOW_WIDTH === 844 ||
+    WINDOW_HEIGHT === 896 ||
+    WINDOW_WIDTH === 896 ||
+    WINDOW_HEIGHT === 926 ||
+    WINDOW_WIDTH === 926
 }
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
 const widthPx = (widthPercent: number) => {
-  const elemWidth = typeof widthPercent === 'number' ? widthPercent : parseFloat(widthPercent)
-  return (screenWidth * elemWidth) / 100
+  return (screenWidth * widthPercent) / 100
 }
 
 const heightPx = (heightPercent: number) => {
-  const elemHeight = typeof heightPercent === 'number' ? heightPercent : parseFloat(heightPercent)
-  return ((screenHeight - Number(getStatusBarHeight().toFixed(0))) * elemHeight) / 100
+  return ((screenHeight - getStatusBarHeight()) * heightPercent) / 100
+}
+
+const font = (size: number) => {
+  return (screenWidth * size) / 100
 }
 
 const getStatusBarHeight = () => {
-  return Platform.select({
-    ios: isIPhoneX ? 44 : 20,
-    android: StatusBar.currentHeight,
+  const statusBarHeight: number = Platform.select({
+    ios: isIPhoneX ? 78 : 20,
+    android: (StatusBar.currentHeight ?? 0) > 24 ? 0 : StatusBar.currentHeight ?? 0,
     default: 0
   })
+  return statusBarHeight
 }
 
+const isIPhoneXSeries = () => {
+  if (Platform.OS === 'android') {
+    return 0
+  }
+  return isIPhoneX ? 34 : 0
+}
+
+const isAndroidNouch = Platform.OS === 'android' ? (StatusBar.currentHeight ?? 0) > 24 : false
 const [shortDimension, longDimension] =
-  W_WIDTH < W_HEIGHT ? [W_WIDTH, W_HEIGHT] : [W_HEIGHT, W_WIDTH]
+  WINDOW_WIDTH < WINDOW_HEIGHT ? [WINDOW_WIDTH, WINDOW_HEIGHT] : [WINDOW_HEIGHT, WINDOW_WIDTH]
 
 // guideline size
 const guidelineBaseWidth = 375
 const guidelineBaseHeight = 812
 
-const scale = (size: number) =>
-  Number(Number((shortDimension / guidelineBaseWidth) * size).toFixed())
-const verticalScale = (size: number) =>
-  Number(Number((longDimension / guidelineBaseHeight) * size).toFixed())
-const moderateScale = (size: number, factor = 0.5) =>
-  Number(Number(size + (scale(size) - size) * factor).toFixed())
+const scale = (size: number) => (shortDimension / guidelineBaseWidth) * size
 
-const INPUT_HEIGHT = verticalScale(50)
+const verticalScale = (size: number) => (longDimension / guidelineBaseHeight) * size
 
-export const STATUSBAR_HEIGHT = getStatusBarHeight()
+const moderateScale = (size: number, factor = 0.5) => size + (scale(size) - size) * factor
+
+const isTab = isTablet()
 
 export {
+  font,
   getStatusBarHeight,
   heightPx,
-  INPUT_HEIGHT,
+  isAndroidNouch,
   isIPhoneX,
+  isIPhoneXSeries,
+  isTab,
   moderateScale,
   scale,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
   verticalScale,
-  W_HEIGHT,
-  W_WIDTH,
-  widthPx
-}
+  widthPx}

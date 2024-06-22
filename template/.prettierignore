@@ -2,3 +2,9 @@ node_modules/**
 android/**
 ios/**
 __tests__/**
+src/CustomModule/**
+template/plop/plopTemplates/*
+**/*.hbs
+template/plop/*
+template/plop/**
+**/*.hbd

@@ -1,7 +1,5 @@
-import AppConfig from './AppConfig'
-
 const EndPoints = {
-  //your api endpoints
+  login: 'login'
 }
 
 export default EndPoints

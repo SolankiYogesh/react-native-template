@@ -1,13 +1,15 @@
-import {Text} from 'react-native'
 import React from 'react'
-import AppContainer from '../../../Components/AppContainer'
+import {Text, View} from 'react-native'
 
-const LoginScreen = () => {
+import {AppContainer} from '@/Components'
+import {CommonStyle} from '@/Theme'
+
+export default () => {
   return (
     <AppContainer>
-      <Text>LoginScreen</Text>
+      <View style={CommonStyle.centerFlex}>
+        <Text>{'LoginScreen'}</Text>
+      </View>
     </AppContainer>
   )
 }
-
-export default LoginScreen

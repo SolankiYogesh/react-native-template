@@ -1,62 +1,67 @@
 /* eslint-disable no-console */
-import Axios from 'axios'
 
-import AppConfig from './AppConfig'
-import EndPoints from './EndPoints'
+import axios, {AxiosRequestConfig, AxiosRequestHeaders} from 'axios'
 
-type methodtype = 'post' | 'get' | 'put' | 'delete'
+import Config from '@/config/Config'
+import Constant from '@/Helpers/Constant'
 
-export const getHeaders = (isFormdata = false) => {
+type Methodtype = 'post' | 'get' | 'put' | 'delete'
+
+
+export const getHeaders = (isFormData = false) => {
   return {
     accept: 'application/json',
-    'Content-Type': isFormdata ? 'multipart/form-data' : 'application/json',
+    'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
     'X-CSRFTOKEN': 'X-CSRFTOKEN: BFQcYOCNH7nZCRRbhEg8MzRWpLg6O1ThL0fiW6mbzSfs78qQExca0UrnBoXRyl1M'
   }
 }
-const axiosInstance = Axios.create({
-  baseURL: AppConfig.API_URL
+
+const axiosInstance = axios.create({
+  baseURL: Config.BASE_URL
 })
 
-axiosInstance.interceptors.request.use(
-  (config: any) => {
-    config.headers = config?.headers
-    return config
-  },
-  (error) => {
-    console.log('axios request error =>', error)
-
-    return Promise.reject(error)
-  }
-)
-
 axiosInstance.interceptors.response.use(
-  (config) => {
-    console.log('axios response =>', config)
-    return config
-  },
-  (error) => {
-    console.log('axios response error =>!', error.response || error)
+  (res) => res,
+  async (error) => {
 
+
+    // Return a Promise rejection if the status code is not 401
     return Promise.reject(error)
   }
 )
 
-const getFormData = (object: any) => {
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const tempConfig = config
+    const {token} = Constant
+
+    if (token) {
+      config.headers = {
+        ...config?.headers,
+        Authorization: `Bearer ${token}`
+      } as unknown as AxiosRequestHeaders
+    }
+
+    return tempConfig
+  },
+  async (error) => Promise.reject(error)
+)
+
+const getFormData = (object: Record<string, unknown>): FormData => {
   const formData = new FormData()
-  Object.keys(object).forEach((key) => formData.append(key, object[key]))
+  Object.keys(object).forEach((key) => formData.append(key, String(object[key])))
   return formData
 }
 
-const APICall = async (
-  method: methodtype = 'post',
+const APICall = async <T>(
+  method: Methodtype,
   body: any,
-  url = '',
-  headers = {},
+  url: string | null = null,
+  headers: any = {},
   formData = false
 ) => {
-  const config: any = {
-    method: method.toString(),
-    timeout: 1000 * 60 * 2
+  const config: AxiosRequestConfig = {
+    method
   }
   if (url) {
     config.url = url
@@ -65,24 +70,26 @@ const APICall = async (
     config.params = body
   } else if (body && (method === 'post' || method === 'put') && formData) {
     config.data = getFormData(body)
+    config.headers = {'Content-Type': 'multipart/form-data'}
   } else {
     config.data = body
   }
 
-  config.headers = getHeaders(formData)
-  if (headers && typeof headers === 'string') {
-    config.headers = {Authorization: 'Bearer ' + headers || ' ', ...getHeaders(formData)}
+  if (headers) {
+    config.headers = headers
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise<ResponseTypeAXIOS<T>>((resolve, reject) => {
     axiosInstance(config)
-      .then((res) => resolve({status: res.status, data: res.data}))
-      .catch(async (error) => {
-        if (error?.response?.status === 500) {
-          reject(error?.response)
-        } else {
-          resolve(error?.response)
-        }
+      .then((res) => {
+        console.log('success', '<=======API Response======>', {
+          status: res.status,
+          data: res.data
+        })
+        return resolve({status: res.status, data: res.data})
+      })
+      .catch((error) => {
+        return resolve(error?.response)
       })
   })
 }

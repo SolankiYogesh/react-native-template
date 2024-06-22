@@ -1,0 +1,14 @@
+node_modules/** 
+android/**
+ios/**
+__tests__/**
+src/CustomModule/**
+src/Packages/**
+template/plop/plopTemplates/*
+**/*.hbs
+template/plop/*
+template/plop
+*.config.js
+.eslintrc.js
+index.js
+plopfile.js
