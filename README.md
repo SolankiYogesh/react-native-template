@@ -38,7 +38,13 @@ npm install
 ### 3️⃣ iOS Setup (CocoaPods)
 
 ```bash
-cd ios && pod install
+yarn pod
+```
+
+#### Or use NPM:
+
+```bash
+cd ios && RCT_NEW_ARCH_ENABLED=1 pod install 
 ```
 
 ---
