@@ -9,6 +9,7 @@ import {Colors, Fonts} from '@/Theme'
 
 export default () => {
   const {userData} = useUserStore('userData')
+
   const fullName = `${userData?.first_name} ${userData?.last_name}`
 
   const handleLogout = useCallback(() => {

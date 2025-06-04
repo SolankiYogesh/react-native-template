@@ -1,85 +1,174 @@
-# React native project template
 
-## Initialization
+# 🚀 React Native Project Template
 
-1️⃣ **run below command to generate react native project with this template.**
+A modern, scalable, and CLI-enhanced React Native starter — optimized for speed, maintainability, and developer productivity.
+
+---
+
+## 🛠️ Project Initialization
+
+### 1️⃣ Create a New Project
+
+#### 📦 From GitHub:
 
 ```bash
-npx react-native init PROJECT_NAME --template https://github.com/SolankiYogesh/react-native-template
+npx @react-native-community/cli@latest init YourAppName --template  https://github.com/SolankiYogesh/react-native-template --skip-install
 ```
 
-or
 
-```bash
-npx react-native init PROJECT_NAME --template PATH_TO_LOCAL
-```
 
-2️⃣ **install packages**
+---
+
+### 2️⃣ Install Dependencies
+
+#### ✅ Recommended (Yarn):
 
 ```bash
 yarn
 ```
 
-or
+#### Or use NPM:
 
 ```bash
 npm install
 ```
 
-3️⃣ **install pods (for ios)**
+---
+
+### 3️⃣ iOS Setup (CocoaPods)
 
 ```bash
 cd ios && pod install
 ```
 
-## Automatically generate components and screens
+---
 
-we are using [plop.js](https://plopjs.com/) to generate components and screens using command line in matter of seconds.
+## ⚡ Generate Components & Screens in Seconds
 
-in your terminal run ,
+This template includes [Plop.js](https://plopjs.com/) for fast, consistent scaffolding of components and screens.
+
+### 🧩 Generate Using CLI:
 
 ```bash
 yarn generate
 ```
 
-this will prompt you to choose a generator  
-1️⃣ common component\
-2️⃣ screen\
-3️⃣ screen specific component
+You'll be prompted with the following generator options:
 
-1️⃣ for common component it will ask for the component name and create the new common component with basic code structure at
+* **Common Component** (auto-exported, created at `src/components/ComponentName`)
+* **Screen** (auto-exported, created at `src/screens/ScreenName`)
+* **Screen-Specific Component** (created inside respective screen directory)
 
-```bash
-|--src
-   |--components
-      |--ComponentName
-         |--ComponentName.tsx
-         |--ComponentName.styles.ts
+---
+
+## 🧰 Key Featured Libraries & Benefits
+
+| Library                              | Purpose & Benefit                               |
+| ------------------------------------ | ----------------------------------------------- |
+| **dayjs**                            | Lightweight, performant date/time manipulation  |
+| **zustand**                          | Minimalistic, flexible state management         |
+| **react-native-mmkv**                | Ultra-fast, encrypted key-value storage         |
+| **react-native-keyboard-controller** | Robust keyboard event management & animations   |
+| **react-hook-form**                  | Simple, performant form management              |
+| **yup**                              | Schema validation and type-safe form validation |
+| **rn-ripple-button**                 | Highly customizable ripple feedback buttons     |
+
+These carefully picked libraries ensure smooth performance, better developer experience, and maintainability out-of-the-box.
+
+---
+
+## 🖼️ Screenshots Preview
+
+| 🏠 Dashboard                          | 🔐 Login                      |
+| ------------------------------------- | ----------------------------- |
+| ![Dashboard](./preview/dashboard.png) | ![Login](./preview/login.png) |
+
+---
+
+## 🎨 Features Included
+
+* 🧱 Atomic folder structure
+* ⚛️ React Native + TypeScript
+* 🧩 Plop.js generators for components & screens
+* 🌈 Centralized theming system
+* 🚀 Optimized for fast development and performance
+
+---
+
+## 🧭 Folder Structure
+
+```
+├── Assets
+│   ├── Fonts
+│   │   ├── Inter-Bold.ttf
+│   │   ├── Inter-ExtraBold.ttf
+│   │   ├── Inter-Medium.ttf
+│   │   ├── Inter-Regular.ttf
+│   │   └── Inter-SemiBold.ttf
+│   └── Images
+│       └── user.png
+├── Components
+│   ├── AppButton.tsx
+│   ├── AppContainer.tsx
+│   ├── AppDropDown
+│   ├── AppHeader.tsx
+│   ├── AppInput.tsx
+│   ├── AppLoader
+│   │   ├── AppLoader.tsx
+│   │   └── Loader.ts
+│   └── index.ts
+├── Config
+│   └── Config.ts
+├── Helpers
+│   ├── AppStorage.ts
+│   ├── Constant.ts
+│   ├── index.ts
+│   ├── Responsive.ts
+│   ├── Screens.ts
+│   ├── SVGByteCode.ts
+│   └── Utility.ts
+├── Hooks
+│   ├── index.ts
+│   ├── useNavigation.ts
+│   └── useParams.ts
+├── Network
+│   ├── APICall.ts
+│   ├── EndPoints.ts
+│   └── index.ts
+├── Router
+│   ├── AppNavigation.tsx
+│   ├── AuthNavigation.tsx
+│   ├── HomeNavigation.tsx
+│   ├── index.ts
+│   └── RootNavigation.ts
+├── Screens
+│   ├── Auth
+│   │   └── LoginScreen
+│   │       └── LoginScreen.tsx
+│   ├── index.ts
+│   ├── Main
+│   │   └── DashBoardScreen
+│   │       └── DashBoardScreen.tsx
+│   └── Yogesh
+├── Store
+│   ├── index.ts
+│   ├── useMulti.ts
+│   └── useUserStore.ts
+├── Theme
+│   ├── Colors.ts
+│   ├── CommonStyle.ts
+│   ├── Fonts.ts
+│   └── index.ts
+└── Types
+    ├── allTypes.d.ts
+    ├── index.ts
+    ├── screen.types.ts
+    └── types.ts
+
 ```
 
-it will also export it from index.js Automatically
+---
 
-2️⃣ for screens it will ask for the screen name and create the new screen with basic code structure at
+## 💡 Pro Tip
 
-```bash
-|--src
-   |--screens
-      |--ScreenName
-         |--ScreenName.tsx
-         |--ScreenName.styles.ts
-```
-
-it will also export it from index.js Automatically
-
-3️⃣ for screen specific component it will ask for the screen name which this component belongs to and then it will ask for the component name then it will create the new component with basic code structure inside that specific screen's component folder
-
-```bash
-|--src
-   |--screens
-      |--ScreenName
-         |--components
-            |--ComponentName.tsx
-            |--ComponentName.styles.ts
-```
-
-...and voila 🪄 your component/screen is generated in matter of seconds.
+Run `yarn generate` often to boost productivity and keep your code consistent!

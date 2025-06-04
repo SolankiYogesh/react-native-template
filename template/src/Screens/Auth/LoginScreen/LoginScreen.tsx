@@ -33,14 +33,7 @@ export default memo(() => {
     handleSubmit,
     formState: {errors}
   } = useForm<FormData>({
-    resolver: yupResolver(schema),
-
-    defaultValues: {
-      email: 'sdfdsf@gmail.com',
-      first_name: 'Dsfdsf',
-      last_name: 'sdfdsf',
-      password: '123456'
-    }
+    resolver: yupResolver(schema)
   })
 
   const onSubmit = useCallback(
@@ -51,7 +44,7 @@ export default memo(() => {
         AppStorage.set(AppStorageKeys.TOKEN, Math.random().toString())
         setUserData({
           ...data,
-          picture: null
+          picture: "https://i.pravatar.cc/150?img=12"
         })
         NavigateToMain()
       }, 2000)
