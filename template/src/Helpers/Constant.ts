@@ -1,3 +1,5 @@
 export default {
-    token:""
-}
+  navigationOptions: {
+    headerShown: false,
+  },
+};

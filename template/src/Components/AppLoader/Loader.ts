@@ -8,6 +8,8 @@ export default class Loader {
   static isLoading(check: boolean) {
     try {
       this.loader?.showLoader(check)
-    } catch (error) {}
+    } catch (_) {
+      // something went wrong
+    }
   }
 }

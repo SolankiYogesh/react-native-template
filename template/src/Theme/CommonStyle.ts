@@ -4,16 +4,19 @@ import Colors from './Colors'
 
 export default StyleSheet.create({
   centerFlex: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.black
+    backgroundColor: Colors.black,
+    flex: 1,
+    justifyContent: 'center'
   },
   flex: {
     flex: 1
   },
   row: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  selfCenter: {
+    alignSelf: 'center'
   }
 })

@@ -2,16 +2,9 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "typeRoots": ["./src/types"],
-    "strictNullChecks": true,
-    "target": "es2017",
-    "noImplicitAny": true,
-    "strict": false,
-    "skipLibCheck": true,
-    "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
-  },
-  "include": ["."],
-  "exclude": ["node_modules"]
+  }
 }

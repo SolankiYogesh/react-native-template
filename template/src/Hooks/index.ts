@@ -1,4 +1,4 @@
-import useNavigation from './useNavigation'
-import useRoute from './useRoute'
+import useNavigation from './useNavigation';
+import useParams from './useParams';
 
-export {useNavigation, useRoute}
+export {useNavigation, useParams};

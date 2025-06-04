@@ -1,1 +1,2 @@
-npm run linter && npm run prettier
+
+yarn linter && yarn prettier
