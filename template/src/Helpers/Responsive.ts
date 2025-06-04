@@ -38,7 +38,7 @@ const font = (size: number) => {
 const getStatusBarHeight = () => {
   const statusBarHeight: number = Platform.select({
     ios: isIPhoneX ? 78 : 20,
-    android: (StatusBar.currentHeight ?? 0) > 24 ? 0 : StatusBar.currentHeight ?? 0,
+    android: (StatusBar.currentHeight ?? 0) > 24 ? 0 : (StatusBar.currentHeight ?? 0),
     default: 0
   })
   return statusBarHeight
@@ -80,4 +80,5 @@ export {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
   verticalScale,
-  widthPx}
+  widthPx
+}

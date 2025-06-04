@@ -1,5 +1,5 @@
 export default {
   navigationOptions: {
-    headerShown: false,
-  },
-};
+    headerShown: false
+  }
+}

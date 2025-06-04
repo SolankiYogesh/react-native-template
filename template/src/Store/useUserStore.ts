@@ -1,33 +1,34 @@
-import {create} from 'zustand';
-import {createJSONStorage, persist} from 'zustand/middleware';
+import {create} from 'zustand'
+import {createJSONStorage, persist} from 'zustand/middleware'
 
-import type {UserType} from '../Types';
-import {zustandStorage} from '@/Helpers';
+import {zustandStorage} from '@/Helpers'
+
+import type {UserType} from '../Types'
 
 export type UserStore = {
-  userData: UserType | null;
-  setUserData: (data: UserType) => void;
-  logOut: () => void;
-};
+  userData: UserType | null
+  setUserData: (data: UserType) => void
+  logOut: () => void
+}
 
 export default create(
   persist<UserStore>(
-    set => ({
+    (set) => ({
       token: '',
 
       userData: null,
-      setUserData: data =>
-        set(state => {
+      setUserData: (data) =>
+        set((state) => {
           return {
-            userData: {...(state.userData ?? {}), ...data},
-          };
+            userData: {...(state.userData ?? {}), ...data}
+          }
         }),
 
-      logOut: () => set({userData: null}),
+      logOut: () => set({userData: null})
     }),
     {
       name: 'user-storage',
-      storage: createJSONStorage(() => zustandStorage),
-    },
-  ),
-);
+      storage: createJSONStorage(() => zustandStorage)
+    }
+  )
+)

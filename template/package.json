@@ -8,7 +8,7 @@
     "start": "react-native start",
     "pod": "cd ios && RCT_NEW_ARCH_ENABLED=1 pod install",
     "clean": "echo '🧹 Cleaning Mobile Workspace...'; rm -rf yarn.lock node_modules node_modules ios/build ios/Pods ios/Podfile.lock android/.gradle android/build android/app/build android/a packages/web/node_modules && echo '✅ Mobile workspace cleaned!';",
-    "prettier": "prettier --write '/src/**/*.{js,jsx,ts,tsx}'",
+    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "linter": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "reset": "watchman watch-del-all && APP_ENV=dev npx  react-native start --reset-cache",
     "prepare": "husky"
