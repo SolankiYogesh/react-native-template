@@ -1,6 +1,13 @@
 
 # 🚀 React Native Project Template
 
+## ⚙️ Framework Versions
+
+|Packages        | Version   |
+|----------------|-----------|
+| React          | 19.0.0    |
+| React Native   | 0.79.2    |
+
 A modern, scalable, and CLI-enhanced React Native starter — optimized for speed, maintainability, and developer productivity.
 
 ---
