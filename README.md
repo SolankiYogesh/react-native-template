@@ -79,9 +79,9 @@ These carefully picked libraries ensure smooth performance, better developer exp
 
 ## 🖼️ Screenshots Preview
 
-| 🏠 Dashboard                          | 🔐 Login                      |
+| 🔐 Login                              | 🏠 Dashboard                  |
 | ------------------------------------- | ----------------------------- |
-| ![Dashboard](./preview/dashboard.png) | ![Login](./preview/login.png) |
+| ![Login](./preview/login.png) | ![Dashboard](./preview/dashboard.png) |
 
 ---
 
