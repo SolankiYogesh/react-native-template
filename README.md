@@ -14,17 +14,35 @@ A modern, scalable, and CLI-enhanced React Native starter — optimized for spee
 
 ## 🛠️ Project Initialization
 
-### 1️⃣ Create a New Project
+#### ⚡ Instant Setup (No cloning required):
 
-#### 📦 From GitHub:
+Run the generator directly using `npx` or `bunx` to create a fresh project with the latest React Native version and this template layered on top.
 
 ```bash
-npx @react-native-community/cli@latest init YourAppName --template  https://github.com/SolankiYogesh/react-native-template --skip-install
+# Using bunx (Fastest)
+bunx github:SolankiYogesh/react-native-template MyNewProject
+
+# Using npx
+npx github:SolankiYogesh/react-native-template MyNewProject
 ```
 
+---
 
+#### 🛠️ Manual Usage (Cloned Repo):
+
+If you've already cloned the repository, you can use the built-in `create` command:
+
+```bash
+# 1. Install CLI dependencies
+bun install  # or npm install
+
+# 2. Create a new project
+bun run create MyNewProject
+```
 
 ---
+
+#### 📦 Traditional Method (via GitHub):
 
 ### 2️⃣ Install Dependencies
 

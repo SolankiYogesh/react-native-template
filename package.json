@@ -1,8 +1,24 @@
 {
   "name": "react-native-template",
-  "version": "0.0.1",
-  "description": "React Native with Navigation Template",
+  "version": "0.1.0",
+  "description": "CLI for creating new React Native projects using this template with the latest RN version",
+  "main": "cli/index.js",
+  "bin": {
+    "rn-template-cli": "./cli/index.js"
+  },
+  "scripts": {
+    "create": "node ./cli/index.js"
+  },
   "repository": "https://github.com/SolankiYogesh/react-native-template",
   "author": "Yogesh Solanki <solankiyogesh3500@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.3.4"
+  },
+  "dependencies": {
+    "ora": "^5.4.1",
+    "prompts": "^2.4.2"
+  }
 }
