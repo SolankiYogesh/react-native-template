@@ -113,6 +113,9 @@ program
         ".prettierignore",
         "commitlint.config.js",
         "plopfile.js",
+        ".gitignore",
+        "Gemfile",
+        ".yarnrc.yml",
       ];
 
       for (const item of toCopy) {
