@@ -1,10 +1,9 @@
 import type {ReactNode} from 'react'
 import {memo} from 'react'
-import type {StyleProp, TextStyle, TouchableOpacityProps} from 'react-native'
-import {StyleSheet, Text} from 'react-native'
+import type {PressableProps, StyleProp, TextStyle, ViewStyle} from 'react-native'
+import {Pressable, StyleSheet, Text} from 'react-native'
 import type {XmlProps} from 'react-native-svg'
 import {SvgFromXml} from 'react-native-svg'
-import Ripple from 'rn-ripple-button'
 
 import {moderateScale, scale, verticalScale} from '@/Helpers'
 import Utility from '@/Helpers/Utility'
@@ -12,6 +11,7 @@ import {Colors, Fonts} from '@/Theme'
 
 type AppButtonProps = {
   title?: string
+  style?: StyleProp<ViewStyle>
   textStyle?: StyleProp<TextStyle>
   leftImage?: XmlProps
   backgroundColor?: string
@@ -19,7 +19,7 @@ type AppButtonProps = {
   hintText?: string
   hintTextStyle?: StyleProp<TextStyle>
   children?: ReactNode
-} & TouchableOpacityProps
+} & Omit<PressableProps, 'style'>
 
 export default memo(
   ({
@@ -36,16 +36,23 @@ export default memo(
     ...rest
   }: AppButtonProps) => {
     return (
-      <Ripple
+      <Pressable
         {...rest}
-        color={disabled ? Colors.transparent : rippleColor}
-        style={[styles.container, {backgroundColor}, disabled && styles.disabledStyle, style]}
+        disabled={disabled}
+        android_ripple={{color: disabled ? Colors.transparent : rippleColor}}
+        style={({pressed}) => [
+          styles.container,
+          {backgroundColor},
+          disabled && styles.disabledStyle,
+          pressed && styles.pressedStyle,
+          style
+        ]}
       >
         {!!leftImage?.xml && <SvgFromXml {...leftImage} />}
         {!!title && <Text style={[styles.textStyle, textStyle]}>{title}</Text>}
         {!!hintText && <Text style={[styles.hintStyle, hintTextStyle]}>{hintText}</Text>}
         {children}
-      </Ripple>
+      </Pressable>
     )
   }
 )
@@ -67,6 +74,9 @@ const styles = StyleSheet.create({
     color: Colors.whiteShadeFAFB,
     fontFamily: Fonts.ThemeRegular,
     fontSize: moderateScale(12)
+  },
+  pressedStyle: {
+    opacity: 0.85
   },
   textStyle: {
     color: Colors.white,

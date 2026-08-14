@@ -27,7 +27,7 @@ export default memo(
           style
         ]}
       >
-        <StatusBar animated backgroundColor={Colors.white} barStyle={'dark-content'} />
+        <StatusBar animated barStyle={'dark-content'} />
         {children}
       </View>
     )

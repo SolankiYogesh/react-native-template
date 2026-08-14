@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     width: verticalScale(100)
   },
   modalContainer: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
 
     ...CommonStyle.centerFlex,
     backgroundColor: Colors.backdrop,

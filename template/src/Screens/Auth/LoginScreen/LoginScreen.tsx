@@ -1,10 +1,10 @@
-import {yupResolver} from '@hookform/resolvers/yup'
+import {zodResolver} from '@hookform/resolvers/zod'
 import {memo, useCallback, useRef} from 'react'
 import {Controller, useForm} from 'react-hook-form'
 import type {TextInput} from 'react-native'
 import {Pressable, StyleSheet, Text, View} from 'react-native'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-controller'
-import * as yup from 'yup'
+import {z} from 'zod'
 
 import {AppButton, AppContainer, AppHeader, AppInput, Loader} from '@/Components'
 import {AppStorage, AppStorageKeys, moderateScale, scale, verticalScale} from '@/Helpers'
@@ -12,17 +12,14 @@ import {NavigateToMain} from '@/Router'
 import {useUserStore} from '@/Store'
 import {Colors, Fonts} from '@/Theme'
 
-const schema = yup.object().shape({
-  first_name: yup.string().required('First name is required'),
-  last_name: yup.string().required('Last name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required')
+const schema = z.object({
+  first_name: z.string().min(1, 'First name is required'),
+  last_name: z.string().min(1, 'Last name is required'),
+  email: z.string().min(1, 'Email is required').email('Invalid email'),
+  password: z.string().min(6, 'Password must be at least 6 characters')
 })
 
-type FormData = yup.InferType<typeof schema>
+type FormData = z.infer<typeof schema>
 export default memo(() => {
   const lastNameRef = useRef<TextInput>(null)
   const emailRef = useRef<TextInput>(null)
@@ -33,7 +30,7 @@ export default memo(() => {
     handleSubmit,
     formState: {errors}
   } = useForm<FormData>({
-    resolver: yupResolver(schema)
+    resolver: zodResolver(schema)
   })
 
   const onSubmit = useCallback(
@@ -44,7 +41,7 @@ export default memo(() => {
         AppStorage.set(AppStorageKeys.TOKEN, Math.random().toString())
         setUserData({
           ...data,
-          picture: "https://i.pravatar.cc/150?img=12"
+          picture: 'https://i.pravatar.cc/150?img=12'
         })
         NavigateToMain()
       }, 2000)
@@ -121,7 +118,7 @@ export default memo(() => {
                 onChangeText={onChange}
                 onBlur={onBlur}
                 returnKeyType="done"
-                onSubmitEditing={handleSubmit(onSubmit)}
+                onSubmitEditing={() => handleSubmit(onSubmit)()}
                 error={errors.password?.message}
               />
             )}
@@ -130,7 +127,7 @@ export default memo(() => {
             <Text style={styles.forgotStyle}>Forgot password?</Text>
           </Pressable>
         </View>
-        <AppButton title="Log in" onPress={handleSubmit(onSubmit)} />
+        <AppButton title="Log in" onPress={() => handleSubmit(onSubmit)()} />
       </KeyboardAwareScrollView>
     </AppContainer>
   )

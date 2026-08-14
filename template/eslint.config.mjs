@@ -2,8 +2,6 @@ import {fixupPluginRules} from '@eslint/compat'
 import eslint from '@eslint/js'
 import airbnb from 'eslint-config-airbnb-base'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import deprecation from 'eslint-plugin-deprecation'
-import es from 'eslint-plugin-es'
 import importPlugin from 'eslint-plugin-import'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
@@ -53,9 +51,7 @@ export default [
         'react-hooks': fixupPluginRules(reactHooks),
         'simple-import-sort': sortImports,
         airbnb: fixupPluginRules(airbnb),
-        'jsx-a11y': fixupPluginRules(jsxA11y),
-        deprecation: fixupPluginRules(deprecation),
-        es: fixupPluginRules(es)
+        'jsx-a11y': fixupPluginRules(jsxA11y)
         // 'you-dont-need-lodash-underscore': fixupPluginRules(lodash)
       }
     },
@@ -201,9 +197,6 @@ export default [
         'default-param-last': 'error',
         '@typescript-eslint/no-empty-interface': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
-        // ESLint core rules
-        'es/no-nullish-coalescing-operators': 'off',
-        'es/no-optional-chaining': 'off',
         'prefer-destructuring': [
           'error',
           {
@@ -245,7 +238,7 @@ export default [
         },
 
         react: {
-          version: '18.3.1'
+          version: '19.2.8'
         }
       }
     }

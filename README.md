@@ -5,8 +5,8 @@
 
 |Packages        | Version   |
 |----------------|-----------|
-| React          | 19.1.0    |
-| React Native   | 0.80.0    |
+| React          | 19.2.8    |
+| React Native   | 0.86.2    |
 
 A modern, scalable, and CLI-enhanced React Native starter — optimized for speed, maintainability, and developer productivity.
 
@@ -16,7 +16,7 @@ A modern, scalable, and CLI-enhanced React Native starter — optimized for spee
 
 #### ⚡ Instant Setup (No cloning required):
 
-Run the generator directly using `npx` or `bunx` to create a fresh project with the latest React Native version and this template layered on top.
+Run the generator directly using `npx` or `bunx` to create a fresh project with React Native pinned to the newest version this template's animation stack (`react-native-reanimated` / `react-native-worklets`) actually supports, with this template layered on top.
 
 ```bash
 # Using bunx (Fastest)
@@ -101,8 +101,7 @@ You'll be prompted with the following generator options:
 | **react-native-mmkv**                | Ultra-fast, encrypted key-value storage         |
 | **react-native-keyboard-controller** | Robust keyboard event management & animations   |
 | **react-hook-form**                  | Simple, performant form management              |
-| **yup**                              | Schema validation and type-safe form validation |
-| **rn-ripple-button**                 | Highly customizable ripple feedback buttons     |
+| **zod**                              | Schema validation and type-safe form validation |
 
 These carefully picked libraries ensure smooth performance, better developer experience, and maintainability out-of-the-box.
 
