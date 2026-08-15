@@ -161,6 +161,12 @@ program
       spinner.start(chalk.yellow("📂 Layering template files..."));
       process.chdir(projectPath);
 
+      // The default RN init scaffolds its own .eslintrc.js and .prettierrc.js,
+      // which conflict with the template's eslint.config.mjs (flat config) and
+      // .prettierrc.
+      await fs.remove(path.join(projectPath, ".eslintrc.js"));
+      await fs.remove(path.join(projectPath, ".prettierrc.js"));
+
       const templatePkg = await fs.readJson(
         path.join(TEMPLATE_DIR, "package.json"),
       );
