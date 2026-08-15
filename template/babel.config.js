@@ -11,6 +11,9 @@ module.exports = {
         },
       },
     ],
-     'react-native-worklets/plugin',
+    // zod v4 ships `export * as x from '...'` in its entry files, which
+    // @react-native/babel-preset doesn't transform on its own.
+    '@babel/plugin-transform-export-namespace-from',
+    'react-native-worklets/plugin',
   ],
 };

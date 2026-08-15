@@ -33,6 +33,7 @@
     "react-native-nitro-modules": "^0.36.5"
   },
   "devDependencies": {
+    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "@eslint/compat": "^2.1.0",
